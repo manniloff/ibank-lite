@@ -1,5 +1,6 @@
 package com.ibank.lite.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.ibank.lite.util.MaritalStatus;
 import com.ibank.lite.util.RequestStatus;
 import lombok.AllArgsConstructor;
@@ -51,5 +52,6 @@ public class CreditRequest {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id", nullable = false)
+    @JsonIgnore
     private User user;
 }

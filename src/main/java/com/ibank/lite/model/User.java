@@ -5,7 +5,11 @@ import com.ibank.lite.util.Roles;
 import com.ibank.lite.util.SocialState;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -18,9 +22,13 @@ import java.util.Set;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@RequiredArgsConstructor
+@ToString(exclude = {"creditRequestSets"})
+@EqualsAndHashCode(exclude = {"creditRequestSets"})
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @NonNull
     private long id;
 
     @Column(name = "first_name")

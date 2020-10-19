@@ -35,6 +35,8 @@ public class BankServiceIml implements BankService {
 
         bank.setName(newBank.getName());
         bank.setPhoneNumber(newBank.getPhoneNumber());
+        bank.setPassword(newBank.getPassword());
+        bank.setWebSite(newBank.getWebSite());
         bank.setEmail(newBank.getEmail());
         bank.setAddress(newBank.getAddress());
 
@@ -51,6 +53,8 @@ public class BankServiceIml implements BankService {
 
                                      bank.setAddress(newBank.getAddress());
                                      bank.setPhoneNumber(newBank.getPhoneNumber());
+                                     bank.setPassword(newBank.getPassword());
+                                     bank.setWebSite(newBank.getWebSite());
                                      bank.setEmail(newBank.getEmail());
                                      bankRepository.save(bank);
                                      return newBank;

@@ -1,7 +1,9 @@
 package com.ibank.lite.controllers;
 
 import com.ibank.lite.dto.ResponseJsonDto;
+import com.ibank.lite.model.Bank;
 import com.ibank.lite.model.User;
+import com.ibank.lite.service.BankService;
 import com.ibank.lite.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
@@ -21,8 +23,9 @@ import javax.validation.ConstraintViolationException;
 public class RegistrationController {
     private final Logger LOGGER = LoggerFactory.getLogger("rest");
     private final UserService userService;
+    private final BankService bankService;
 
-    @PostMapping(value = {"", "/"}, produces = "application/json")
+    @PostMapping(value = {"/user"}, produces = "application/json")
     ResponseEntity<?> createUser(@RequestBody User newUser) {
         try {
             long id = userService.create(newUser);
@@ -30,12 +33,36 @@ public class RegistrationController {
                 LOGGER.info("Registration new user");
                 return new ResponseEntity<>("Created", HttpStatus.CREATED);
             }
-            return new ResponseEntity<>("User with email - " + newUser.getEmail() + " exists! Change email and try again.", HttpStatus.CONFLICT);
+            return new ResponseEntity<>(
+                    "User with email - " + newUser.getEmail() + " exists! Change email and try again.",
+                    HttpStatus.CONFLICT);
         } catch (ConstraintViolationException e) {
             LOGGER.error("Exception on registration an user!", e);
-            return new ResponseEntity<>(e.getConstraintViolations().stream().findFirst().get().getMessage(), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(e.getConstraintViolations().stream().findFirst().get().getMessage(),
+                    HttpStatus.BAD_REQUEST);
         } catch (Exception e) {
             LOGGER.error("Exception on registration an user!", e);
+            return new ResponseEntity<>(ResponseJsonDto.buildNoContent(), HttpStatus.NO_CONTENT);
+        }
+    }
+
+    @PostMapping(value = {"/bank"}, produces = "application/json")
+    ResponseEntity<?> createBankClient(@RequestBody Bank newBank) {
+        try {
+            long id = bankService.create(newBank);
+            if (id != 0) {
+                LOGGER.info("Registration new bank");
+                return new ResponseEntity<>("Created", HttpStatus.CREATED);
+            }
+            return new ResponseEntity<>(
+                    "Bank with email - " + newBank.getEmail() + " exists! Change email and try again.",
+                    HttpStatus.CONFLICT);
+        } catch (ConstraintViolationException e) {
+            LOGGER.error("Exception on registration a bank!", e);
+            return new ResponseEntity<>(e.getConstraintViolations().stream().findFirst().get().getMessage(),
+                    HttpStatus.BAD_REQUEST);
+        } catch (Exception e) {
+            LOGGER.error("Exception on registration a bank!", e);
             return new ResponseEntity<>(ResponseJsonDto.buildNoContent(), HttpStatus.NO_CONTENT);
         }
     }

@@ -9,6 +9,8 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Calendar;
 import java.util.Set;
 
@@ -22,17 +24,25 @@ public class User {
     private long id;
 
     @Column(name = "first_name")
+    @NotNull
+    @Size(min = 3, max = 15, message = "First name length need minimum 3 and maximum 15 charts")
     private String firstName;
 
     @Column(name = "last_name")
-    private String lastname;
+    @NotNull
+    @Size(min = 3, max = 15, message = "Last name length need minimum 3 and maximum 15 charts")
+    private String lastName;
 
     @Email
+    @NotNull
     private String email;
 
     @Column(name = "phone_number")
+    @NotNull
+    @Size(min = 9, max = 12, message = "Phone number length need minimum 9 and maximum 12 charts")
     private String phoneNumber;
 
+    @NotNull
     private Calendar birthday;
 
     @Column(name = "social_state", nullable = false,
@@ -40,6 +50,8 @@ public class User {
     @Enumerated(value = EnumType.STRING)
     private SocialState socialState;
 
+    @NotNull
+    @Size(min = 6, max = 64, message = "Password length need minimum 6 and maximum 64 charts")
     private String password;
 
     @Column(name = "location", nullable = false,

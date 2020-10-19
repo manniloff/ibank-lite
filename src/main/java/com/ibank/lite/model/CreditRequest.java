@@ -22,12 +22,13 @@ public class CreditRequest {
     @Column(name = "credit_sum")
     private int creditSum;
 
-    @Column(name="first_name")
+    @Column(name = "first_name")
     private String firstName;
 
-    @Column(name="last_name")
+    @Column(name = "last_name")
     private String lastName;
 
+    @Column(name = "phone_number")
     private String phoneNumber;
 
     @Email

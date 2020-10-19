@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.validation.ConstraintViolationException;
+
 @Controller
 @RequestMapping("/registration")
 @RequiredArgsConstructor
@@ -29,6 +31,9 @@ public class RegistrationController {
                 return new ResponseEntity<>("Created", HttpStatus.CREATED);
             }
             return new ResponseEntity<>("User with email - " + newUser.getEmail() + " exists! Change email and try again.", HttpStatus.CONFLICT);
+        } catch (ConstraintViolationException e) {
+            LOGGER.error("Exception on registration an user!", e);
+            return new ResponseEntity<>(e.getConstraintViolations().stream().findFirst().get().getMessage(), HttpStatus.BAD_REQUEST);
         } catch (Exception e) {
             LOGGER.error("Exception on registration an user!", e);
             return new ResponseEntity<>(ResponseJsonDto.buildNoContent(), HttpStatus.NO_CONTENT);

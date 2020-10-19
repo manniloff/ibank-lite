@@ -47,12 +47,12 @@ public class CreditRequestServiceImpl implements CreditRequestService {
             creditRequest.setMaritalStatus(newCreditRequest.getMaritalStatus());
             creditRequest.setEmail(currentUser.getEmail());
             creditRequest.setFirstName(currentUser.getFirstName());
-            creditRequest.setLastName(currentUser.getLastname());
+            creditRequest.setLastName(currentUser.getLastName());
             creditRequest.setPhoneNumber(currentUser.getPhoneNumber());
             int brDate = currentUser.getBirthday().getWeekYear();
             int curDate = Calendar.getInstance().getWeekYear();
             creditRequest.setAge(curDate - brDate);
-            LOGGER.info("Create credit request by user - {} {}", currentUser.getFirstName(), currentUser.getLastname());
+            LOGGER.info("Create credit request by user - {} {}", currentUser.getFirstName(), currentUser.getLastName());
         }
         return creditRequestRepository.save(creditRequest).getId();
     }

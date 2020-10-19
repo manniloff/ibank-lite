@@ -43,7 +43,7 @@ public class UserServiceImpl implements UserService {
         User user = new User();
 
         user.setFirstName(newUser.getFirstName());
-        user.setLastname(newUser.getLastname());
+        user.setLastName(newUser.getLastName());
         user.setEmail(newUser.getEmail());
         user.setPassword(newUser.getPassword());
         user.setPhoneNumber(newUser.getPhoneNumber());
@@ -68,12 +68,12 @@ public class UserServiceImpl implements UserService {
                                      user.setLocation(newUser.getLocation());
                                      user.setBirthday(newUser.getBirthday());
                                      user.setPhoneNumber(newUser.getPhoneNumber());
-                                     user.setLastname(newUser.getLastname());
+                                     user.setLastName(newUser.getLastName());
                                      user.setFirstName(newUser.getFirstName());
                                      user.setPassword(newUser.getPassword());
-                                     user.setActive(newUser.isActive());
                                      //user.setRoles(Roles.USER);
                                      if (JwtRequestFilter.role.equals("ADMIN")) {
+                                         user.setActive(!newUser.isActive() ? true : newUser.isActive());
                                          user.setRoles(newUser.getRoles() == null ? Roles.USER : newUser.getRoles());
                                      }
                                      userRepository.save(user);

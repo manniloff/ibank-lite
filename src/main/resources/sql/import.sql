@@ -1,0 +1,7 @@
+INSERT INTO user (email, password, active, role, birthday, first_name, last_name, location, phone_number, social_state) VALUES ('admin@mail.ru','admin', 1,'ADMIN', '1090-07-18 05:00:00', 'Slava', 'Red', 'CHISINAU', '+37378888888', 'WORK'), ('user@mail.ru','user',1,'USER', '2000-03-11 11:00:00', 'User', 'User', 'EDINET', '+37369888888', 'NONWORK'), ('test@mail.ru','test',1,'USER', '2002-10-01 17:00:00', 'Test', 'Test', 'BALTI', '+37360888888', 'STUDENT');
+
+INSERT INTO bank (address, email, name, password, phone_number, web_site) VALUES ('31 August bl.89', 'vb@victoriabank.md', 'Victoria Bank', '12345678', '022111111', 'vb.md'), ('Grigore Vieru bl.17', 'maib@moldovaagroindbank.md', 'Moldova AgroInd Bank', '87654321', '022222222', 'maib.md'), ('Armeneasca bl.36', 'mib@moldincombank.md', 'MoldIncomBank', '1122334455', '022333333', 'mib.md');
+
+INSERT INTO credit (credit_type, loan_term, rate) VALUES ('PERSONAL_LOAN_WITHOUT_COLLATERAL', 48, 7.8), ('MORTGAGE', 250, 7.1), ('PERSONAL_LOAN', 60, 13.3), ('PRIMA_CASA', 300, 6.3), ('AUTO_CREDIT', 72, 9.3), ('OVERDRAFT', 3, 15.6);
+
+INSERT INTO credit_request (age, credit_sum, email, first_name, last_name, marital_status, number_of_children, phone_number, request_status, user_id) VALUES (20, 150000, 'user@mail.ru', 'User', 'User', 'DIVORCED', 1, '+37369888888', 'NEW', 2), (18, 3000, 'test@mail.ru', 'Test', 'Test', 'NOT_MARRIED', 0, '+37360888888', 'IN_PROGRESS', 3);

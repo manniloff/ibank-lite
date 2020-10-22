@@ -1,0 +1,1 @@
+INSERT INTO user (email, password, active, role, birthday, first_name, last_name, location, phone_number, social_state) VALUES ('admin@mail.ru','admin', 1,'ADMIN', '1090-07-18 05:00:00', 'Slava', 'Red', 'CHISINAU', '+37378888888', 'WORK');
